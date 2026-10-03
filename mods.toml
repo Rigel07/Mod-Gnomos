@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="gnomos"
+version="1.0.0"
+displayName="Gnomos"
+description='''
+Pequeños gnomos con gorro puntiagudo que viven en sus propias aldeas.
+Cuatro tipos de aldea, bloques y objetos nuevos, y gnomos con los que puedes hablar y comerciar.
+'''
+
+[[dependencies.gnomos]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.gnomos]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"

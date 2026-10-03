@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gnomos:block/gnome_brick_slab"
+    },
+    "type=top": {
+      "model": "gnomos:block/gnome_brick_slab_top"
+    },
+    "type=double": {
+      "model": "gnomos:block/gnome_bricks"
+    }
+  }
+}

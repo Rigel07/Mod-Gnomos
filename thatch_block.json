@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gnomos:block/thatch_block"
+    }
+  }
+}

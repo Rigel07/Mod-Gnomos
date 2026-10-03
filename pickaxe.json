@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "gnomos:gnome_bricks",
+    "gnomos:gnome_brick_stairs",
+    "gnomos:gnome_brick_slab",
+    "gnomos:mushroom_lamp",
+    "gnomos:gnome_statue"
+  ]
+}

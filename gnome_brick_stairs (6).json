@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "gnomos:block/gnome_bricks",
+    "top": "gnomos:block/gnome_bricks",
+    "side": "gnomos:block/gnome_bricks"
+  }
+}

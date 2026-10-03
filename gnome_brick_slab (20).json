@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gnomos:gnome_bricks"
+    }
+  },
+  "result": {
+    "item": "gnomos:gnome_brick_slab",
+    "count": 6
+  }
+}

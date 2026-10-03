@@ -1,0 +1,26 @@
+{
+  "structures": [
+    {
+      "structure": "gnomos:meadow_village",
+      "weight": 1
+    },
+    {
+      "structure": "gnomos:mushroom_village",
+      "weight": 1
+    },
+    {
+      "structure": "gnomos:frost_village",
+      "weight": 1
+    },
+    {
+      "structure": "gnomos:mine_village",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 22,
+    "separation": 8,
+    "salt": 1471001
+  }
+}

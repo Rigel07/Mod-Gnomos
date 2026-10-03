@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gnomos:glowcap"
+    },
+    {
+      "item": "gnomos:glowcap"
+    },
+    {
+      "item": "gnomos:glowcap"
+    },
+    {
+      "item": "minecraft:torch"
+    }
+  ],
+  "result": {
+    "item": "gnomos:mushroom_lamp",
+    "count": 2
+  }
+}

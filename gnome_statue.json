@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "gnomos:block/gnome_statue"
+    },
+    "facing=east": {
+      "model": "gnomos:block/gnome_statue",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "gnomos:block/gnome_statue",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "gnomos:block/gnome_statue",
+      "y": 270
+    }
+  }
+}
