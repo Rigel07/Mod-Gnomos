@@ -10,6 +10,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Descomprimir el proyecto
         run: unzip -q gnomos-src.zip -d project
+      - name: Ver estructura
+        run: |
+          ls -la
+          find project -maxdepth 6 -name "*.java" | head -30
+          ls project
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -18,7 +23,12 @@ jobs:
         with:
           gradle-version: 8.1.1
       - name: Build
-        run: gradle build --no-daemon -p project
+        run: gradle build --no-daemon --console=plain -p project
+      - name: Comprobar jar
+        run: |
+          ls -la project/build/libs
+          for j in project/build/libs/*.jar; do echo "== $j"; unzip -l "$j" | tail -8; done
+          find project/build -name "*.class" | wc -l
       - uses: actions/upload-artifact@v4
         with:
           name: gnomos-jar
