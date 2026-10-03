@@ -8,28 +8,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Descomprimir el proyecto
-        run: unzip -q gnomos-src.zip -d project
-      - name: Ver estructura
+
+      - name: Preparar el proyecto
         run: |
-          ls -la
-          find project -maxdepth 6 -name "*.java" | head -30
-          ls project
+          echo "=== Archivos del repositorio ==="
+          find . -path ./.git -prune -o -type f -print | head -100
+          mkdir work
+          if ls *.zip >/dev/null 2>&1; then
+            for z in *.zip; do echo "Descomprimiendo $z"; unzip -q -o "$z" -d work; done
+          else
+            echo "No hay zip: uso los archivos del repositorio"
+            tar --exclude=./work --exclude=./.git --exclude=./.github -cf - . | tar -xf - -C work
+          fi
+          SRC=$(find work -type d -path "*/src/main/java" | head -n 1)
+          if [ -z "$SRC" ]; then
+            echo "ERROR: no se encuentra src/main/java. Faltan los archivos del mod en el repositorio."
+            exit 1
+          fi
+          ROOT=$(dirname "$(dirname "$(dirname "$SRC")")")
+          echo "PROJECT_DIR=$ROOT" >> "$GITHUB_ENV"
+          echo "Proyecto en: $ROOT"
+          echo "Archivos .java: $(find "$ROOT/src/main/java" -name '*.java' | wc -l)"
+          ls -la "$ROOT"
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
+
       - uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: 8.1.1
+
       - name: Build
-        run: gradle build --no-daemon --console=plain -p project
-      - name: Comprobar jar
+        run: gradle build --no-daemon --console=plain -p "$PROJECT_DIR"
+
+      - name: Comprobar el jar
         run: |
-          ls -la project/build/libs
-          for j in project/build/libs/*.jar; do echo "== $j"; unzip -l "$j" | tail -8; done
-          find project/build -name "*.class" | wc -l
+          ls -la "$PROJECT_DIR/build/libs"
+          SIZE=$(stat -c%s "$PROJECT_DIR/build/libs/gnomos-1.0.0.jar")
+          echo "Tamaño del jar: $SIZE bytes"
+          if [ "$SIZE" -lt 50000 ]; then echo "ERROR: el jar está vacío"; exit 1; fi
+
       - uses: actions/upload-artifact@v4
         with:
           name: gnomos-jar
-          path: project/build/libs/*.jar
+          path: ${{ env.PROJECT_DIR }}/build/libs/gnomos-1.0.0.jar
